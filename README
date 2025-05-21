@@ -1,0 +1,21 @@
+This setup is used to deploy VPC infrastructure on AWS using Terraform. This is the very first step to do before deploying AWS Services.
+The infrastructure will prepare two public subnets for Application load balancer controller to function with internet facing, and NAT gateway to be used by the private subnets.
+the private subnet will run the eks cluster including the worker nodes and control plane, which will be exposed using the private api endpoint - to communicate with each other - and public endpoint - for external connection with the cluster.
+
+| Term                                | Meaning                                                                                      |
+| ----------------------------------- | -------------------------------------------------------------------------------------------- |
+| **ALB (Application Load Balancer)** | AWS's load balancer that accepts traffic from the internet.                                  |
+| **ALB Controller**                  | A tool in EKS that watches `Ingress` resources and automatically creates an ALB in AWS.      |
+| **NGINX Ingress Controller**        | A pod inside your cluster that handles traffic **after** it enters Kubernetes.               |
+| **Ingress**                         | A Kubernetes resource that defines rules like: "`/app → service A`", "`/admin → service B`". |
+| **Owned ALB**                       | A **dedicated** ALB for a single Ingress (like one app or team).                             |
+| **Shared ALB**                      | One ALB **shared** by multiple apps or Ingresses. Saves cost.                                |
+
+
+
+| Case # | Setup Description                                        | ALB Ownership                                     | Number of ALBs           | How Apps Are Routed                                                   | DNS Endpoints                     | Use Case / Pros & Cons                                                                 |
+| ------ | -------------------------------------------------------- | ------------------------------------------------- | ------------------------ | --------------------------------------------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------- |
+| **1**  | **Shared ALB directly routing to apps**                  | Shared (one ALB shared)                           | 1 ALB shared across apps | ALB routes directly to different app services based on paths/hosts    | Single ALB DNS shared by all apps | Cheaper (fewer ALBs), simpler external DNS; less isolation                             |
+| **2**  | **Owned ALB per app, ALB routes directly to app**        | Owned (one ALB per app)                           | Multiple ALBs, 1 per app | Each ALB routes directly to one app                                   | Multiple ALB DNS, one per ALB     | Better isolation/security, more ALB cost and management overhead                       |
+| **3**  | **Shared ALB routing to NGINX, NGINX routes internally** | Shared ALB (multiple ALB Ingresses share one ALB) | 1 ALB shared across apps | ALB routes all traffic to one NGINX; NGINX routes apps                | Single ALB DNS shared by all apps | Cost-efficient, central routing, flexible internal routing                             |
+| **4**  | **Owned ALB routing to NGINX, NGINX routes internally**  | Owned (single ALB created by one ALB Ingress)     | One ALB per ALB Ingress  | One ALB routes all traffic to NGINX; NGINX routes all apps internally | One ALB DNS per ALB Ingress       | ALB ownership isolated, but traffic shared internally; hybrid of owned/shared concepts |
