@@ -41,7 +41,7 @@ jobs:
         run: terraform init -backend-config=${{env.BACKEND}}
 
       - name: Terraform Validate
-        run: terraform validate -var-file=${{env.VARIABLES}}
+        run: terraform validate
 
       - name: Terraform Plan
         run: terraform plan -var-file=${{env.VARIABLES}}
