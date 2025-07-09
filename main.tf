@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "git::https://github.com/obreo/effortless-eks.git//modules/vpc?ref=main"
+  source = "git::https://github.com/obreo/iac-modules.git//terraform//vpc?ref=main"
   name   = var.name
   vpc_settings = {
     vpc_cidr_block             = var.vpc.vpc_cidr_block
