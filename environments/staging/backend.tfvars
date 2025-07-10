@@ -1,5 +1,5 @@
     bucket       = "abra-terraform-states"
-    key          = "kubernetes/terraform.tfstate"
+    key          = "kubernetes/vpc/staging.tfstate"
     region       = "us-east-1"
     encrypt      = true
     use_lockfile = true
