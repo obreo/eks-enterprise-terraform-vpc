@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - production
-      - staging
+      #- staging
       - development
   workflow_dispatch:
 
