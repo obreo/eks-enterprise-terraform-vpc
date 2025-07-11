@@ -5,11 +5,11 @@ vpc = {
   vpc_cidr_block             = "10.9.0.0/16"
   public_subnet_cidr_blocks  = ["10.9.0.0/22","10.9.4.0/22"]
   private_subnet_cidr_blocks = ["10.9.8.0/22","10.9.12.0/22"]
-  create_private_subnets_nat = false
+  create_private_subnets_nat = true
   availability_zones         = ["us-east-1a", "us-east-1b"]
 
   include_eks_tags = {
-    cluster_name    = "kubernetes-production"
+    cluster_name    = "EKS-Production"
     shared_or_owned = "owned"
   }
 
