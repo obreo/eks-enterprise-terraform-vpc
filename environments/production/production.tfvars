@@ -9,7 +9,7 @@ vpc = {
   availability_zones         = ["us-east-1a", "us-east-1b"]
 
   include_eks_tags = {
-    cluster_name    = "kubernetes-production"
+    cluster_name    = "EKS-Production"
     shared_or_owned = "owned"
   }
 
