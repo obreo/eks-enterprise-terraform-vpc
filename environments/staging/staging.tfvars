@@ -1,4 +1,4 @@
-
+# Terraform variables for the staging environment. They override the defaults in variables.tf.
 name = "kubernetes-staging"
 
 vpc = {

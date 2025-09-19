@@ -1,6 +1,7 @@
 terraform {
   backend "s3" {
-    /* Multiple environments will be used, each with .tfvars file.
+    /* Multiple environments will be used, each with backend.tfvars file from the `environments` dir,
+     so no need to hard code it here.
     bucket       = "abra-terraform-states"
     key          = "kubernetes/terraform.tfstate"
     region       = "us-east-1"

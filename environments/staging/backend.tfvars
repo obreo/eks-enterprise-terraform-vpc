@@ -4,4 +4,5 @@
     encrypt      = true
     use_lockfile = true
 
-    # terraform init -backend-config=environments/staging/backend.tfvars
+# To run the initialization with this backend config file, use:
+# terraform init -backend-config=environments/staging/backend.tfvars

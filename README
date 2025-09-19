@@ -19,3 +19,7 @@ the private subnet will run the eks cluster including the worker nodes and contr
 | **2**  | **Owned ALB per app, ALB routes directly to app**        | Owned (one ALB per app)                           | Multiple ALBs, 1 per app | Each ALB routes directly to one app                                   | Multiple ALB DNS, one per ALB     | Better isolation/security, more ALB cost and management overhead                       |
 | **3**  | **Shared ALB routing to NGINX, NGINX routes internally** | Shared ALB (multiple ALB Ingresses share one ALB) | 1 ALB shared across apps | ALB routes all traffic to one NGINX; NGINX routes apps                | Single ALB DNS shared by all apps | Cost-efficient, central routing, flexible internal routing                             |
 | **4**  | **Owned ALB routing to NGINX, NGINX routes internally**  | Owned (single ALB created by one ALB Ingress)     | One ALB per ALB Ingress  | One ALB routes all traffic to NGINX; NGINX routes all apps internally | One ALB DNS per ALB Ingress       | ALB ownership isolated, but traffic shared internally; hybrid of owned/shared concepts |
+
+
+
+This infrastrucuture is dual stack, means it uses both ipv6 and ipv4. The IPv6 is used for Kubernetes stack while IPv4 is used to connect k8s to AWS ipv4 based services, as well to allow dual stack load balancer that recives traffic from both IP versions.
