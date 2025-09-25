@@ -2,9 +2,9 @@ terraform {
   backend "s3" {
     /* Multiple environments will be used, each with backend.tfvars file from the `environments` dir,
      so no need to hard code it here.
-    bucket       = "abra-terraform-states"
+    bucket       = "BUTCKET_NAME"
     key          = "kubernetes/terraform.tfstate"
-    region       = "us-east-1"
+    region       = "REGION"
     encrypt      = true
     use_lockfile = true
     */
@@ -17,9 +17,9 @@ terraform {
   }
 }
 
-# Configure the AWS Provider
+# Configure the AWS Provider - uses OIDC role
 provider "aws" {
-  region                   = "us-east-1"
+  region = "us-east-1"
   #shared_config_files      = ["~/.aws/config"]
   #shared_credentials_files = ["~/.aws/credentials"]
   #profile                  = "default"

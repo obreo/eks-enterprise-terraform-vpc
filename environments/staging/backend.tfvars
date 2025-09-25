@@ -1,8 +1,8 @@
-    bucket       = "abra-terraform-states"
+    bucket       = "BUTCKET_NAME"
     key          = "kubernetes/vpc/staging.tfstate"
-    region       = "us-east-1"
+    region       = "REGION"
     encrypt      = true
     use_lockfile = true
 
-# To run the initialization with this backend config file, use:
-# terraform init -backend-config=environments/staging/backend.tfvars
+    # Command to initialize Terraform with this backend configuration:
+    # terraform init -backend-config=environments/staging/backend.tfvars

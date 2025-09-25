@@ -79,19 +79,4 @@ security_groups = {
       }
     }
   }
-
-  /*"vpc_endpoint" = {
-    name        = "vpc_endpoint_inbound"
-    description = "https"
-    tags       = {
-      Environment = "development"
-    }
-    inbound = {
-      ports = [443] # The ports to allow inbound traffic
-      ip_protocol = "tcp" # The protocol to allow (e.g., tcp, udp)
-      destination = {
-          cidr_ipv4 = "10.10.0.0/16"
-      }
-    }
-  }*/
 }

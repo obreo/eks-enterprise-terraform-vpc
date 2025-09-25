@@ -1,3 +1,11 @@
+# Variable definitions for the VPC module
+# These variables are then used in main.tf to configure the VPC module.
+# Values for these variables should be provided in a environments/env.tfvars file
+
+# Adjust these variables based on the requirements of your VPC module.
+# This example assumes a VPC module that requires CIDR blocks, subnet configurations, and security group definitions.
+
+
 variable "name" {
   description = "Metadata for the VPC"
   type        = string
